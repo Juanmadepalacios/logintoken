@@ -8,7 +8,7 @@ from flask_swagger import swagger
 from flask_cors import CORS
 from flask_jwt_extended import (
     JWTManager, jwt_required, create_access_token, create_refresh_token,
-    get_jwt_identity
+    get_jwt_identity*
 )
 from utils import APIException, generate_sitemap
 from models import db
@@ -29,7 +29,7 @@ MIGRATE = Migrate(app, db)
 db.init_app(app)
 CORS(app)
 
-jwt = JWTManager(app)
+jwt = JWTManager(app)*
 
 
 # Handle/serialize errors like a JSON object
@@ -52,7 +52,7 @@ def handle_hello():
 
     return jsonify(response_body), 200
 
-@app.route('/login', methods=['POST'])
+@app.route('/login', methods=['POST'])*
 def handle_login():
     data = request.json
     user = User.query.filter_by(username = data["username"]).first()
@@ -73,7 +73,7 @@ def handle_login():
             "error":"la contraseña no es valida"
     }), 404
 
-@app.route('/register', methods=['POST'])
+@app.route('/register', methods=['POST'])*
 def handle_register():
     data = request.json
 
